@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { X, ChevronRight, ChevronLeft, Heart } from "lucide-react";
 
 const StoryModal = ({ isOpen, onClose }) => {
@@ -6,6 +6,11 @@ const StoryModal = ({ isOpen, onClose }) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showClapboardAnimation, setShowClapboardAnimation] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const touchStartRef = useRef(null);
+  const touchEndRef = useRef(null);
+  const mouseStartRef = useRef(null);
+  const mouseEndRef = useRef(null);
+  const isDraggingRef = useRef(false);
 
   const storyPages = [
     {
@@ -119,6 +124,69 @@ const StoryModal = ({ isOpen, onClose }) => {
     if (e.key === "Escape") onClose();
   };
 
+  // Gestion du swipe tactile
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    touchEndRef.current = null;
+    touchStartRef.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchMove = (e) => {
+    touchEndRef.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStartRef.current || !touchEndRef.current) return;
+    
+    const distance = touchStartRef.current - touchEndRef.current;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && !isTransitioning) {
+      nextPage();
+    }
+    if (isRightSwipe && !isTransitioning) {
+      prevPage();
+    }
+    
+    touchStartRef.current = null;
+    touchEndRef.current = null;
+  };
+
+  // Gestion du swipe avec la souris (drag)
+  const onMouseDown = (e) => {
+    isDraggingRef.current = true;
+    mouseEndRef.current = null;
+    mouseStartRef.current = e.clientX;
+  };
+
+  const onMouseMove = (e) => {
+    if (!isDraggingRef.current) return;
+    mouseEndRef.current = e.clientX;
+  };
+
+  const onMouseUp = () => {
+    if (!isDraggingRef.current) return;
+    
+    if (mouseStartRef.current && mouseEndRef.current) {
+      const distance = mouseStartRef.current - mouseEndRef.current;
+      const isLeftSwipe = distance > minSwipeDistance;
+      const isRightSwipe = distance < -minSwipeDistance;
+
+      if (isLeftSwipe && !isTransitioning) {
+        nextPage();
+      }
+      if (isRightSwipe && !isTransitioning) {
+        prevPage();
+      }
+    }
+    
+    isDraggingRef.current = false;
+    mouseStartRef.current = null;
+    mouseEndRef.current = null;
+  };
+
   useEffect(() => {
     if (isOpen) {
       window.addEventListener("keydown", handleKeyDown);
@@ -189,7 +257,16 @@ const StoryModal = ({ isOpen, onClose }) => {
           </button>
 
           {/* Content - Image en arrière-plan avec texte par-dessus */}
-          <div className="relative min-h-[70vh] xs:min-h-[75vh] xs2:min-h-[80vh] sm:min-h-[85vh] max-h-[85vh] lg:max-h-[90vh] flex flex-col overflow-hidden">
+          <div 
+            className="relative min-h-[70vh] xs:min-h-[75vh] xs2:min-h-[80vh] sm:min-h-[85vh] max-h-[85vh] lg:max-h-[90vh] flex flex-col overflow-hidden cursor-grab active:cursor-grabbing"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+            onMouseDown={onMouseDown}
+            onMouseMove={onMouseMove}
+            onMouseUp={onMouseUp}
+            onMouseLeave={onMouseUp}
+          >
             {/* Image en arrière-plan */}
             <div className="absolute inset-0">
               <div
@@ -281,7 +358,11 @@ const StoryModal = ({ isOpen, onClose }) => {
             </div>
 
             {/* Navigation */}
-            <div className="relative z-20 flex items-center justify-between p-3 xs:p-4 xs2:p-5 sm:p-6 xs2:p-8 border-t border-white/20 bg-black/20 backdrop-blur-sm">
+            <div 
+              className="relative z-20 flex items-center justify-between p-3 xs:p-4 xs2:p-5 sm:p-6 xs2:p-8 border-t border-white/20 bg-black/20 backdrop-blur-sm"
+              onTouchStart={(e) => e.stopPropagation()}
+              onMouseDown={(e) => e.stopPropagation()}
+            >
               <button
                 onClick={prevPage}
                 disabled={isFirstPage}
