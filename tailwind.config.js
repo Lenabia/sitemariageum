@@ -23,6 +23,8 @@ export default {
         "heart-pulse": "heartPulse 2s ease-in-out infinite",
         "clapboard-open": "clapboardOpen 1.2s ease-out forwards",
         "spiral-out": "spiralOut 2.5s ease-out forwards",
+        "spiral-out-sm": "spiralOutSm 2.5s ease-out forwards",
+        "spiral-out-md": "spiralOutMd 2.5s ease-out forwards",
         "elegant-pulse": "elegantPulse 2.5s ease-in-out infinite",
       },
       keyframes: {
@@ -63,6 +65,26 @@ export default {
           },
           "100%": {
             transform: "rotate(720deg) translateX(600px) scale(1.5)",
+            opacity: "0",
+          },
+        },
+        spiralOutSm: {
+          "0%": {
+            transform: "rotate(0deg) translateX(0) scale(0)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "rotate(720deg) translateX(300px) scale(1.8)",
+            opacity: "0",
+          },
+        },
+        spiralOutMd: {
+          "0%": {
+            transform: "rotate(0deg) translateX(0) scale(0)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "rotate(720deg) translateX(400px) scale(1.6)",
             opacity: "0",
           },
         },

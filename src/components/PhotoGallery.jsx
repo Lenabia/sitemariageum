@@ -5,6 +5,7 @@ const PhotoGallery = ({ isOpen, onClose }) => {
   const [doorsOpen, setDoorsOpen] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [animationClass, setAnimationClass] = useState("animate-spiral-out");
 
   const gallerySections = {
     preshooting: {
@@ -114,6 +115,24 @@ const PhotoGallery = ({ isOpen, onClose }) => {
     }
   }, [doorsOpen]);
 
+  // Détecter la taille d'écran pour l'animation adaptative
+  useEffect(() => {
+    const updateAnimation = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setAnimationClass("animate-spiral-out-sm");
+      } else if (width < 1024) {
+        setAnimationClass("animate-spiral-out-md");
+      } else {
+        setAnimationClass("animate-spiral-out");
+      }
+    };
+    
+    updateAnimation();
+    window.addEventListener("resize", updateAnimation);
+    return () => window.removeEventListener("resize", updateAnimation);
+  }, []);
+
   const handleOpenDoors = () => {
     setDoorsOpen(true);
   };
@@ -155,14 +174,15 @@ const PhotoGallery = ({ isOpen, onClose }) => {
             return (
               <div
                 key={index}
-                className={`absolute w-4 h-4 xs:w-5 xs:h-5 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 shadow-2xl ${
-                  doorsOpen ? "animate-spiral-out" : ""
+                className={`absolute w-6 h-6 xs:w-8 xs:h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 shadow-2xl ${
+                  doorsOpen ? animationClass : ""
                 }`}
                 style={{
                   animationDelay: `${delay}s`,
                   transform: `rotate(${angle}deg) translateX(0)`,
-                  opacity: doorsOpen ? 0 : 0.9,
-                  filter: "blur(0.5px)",
+                  opacity: doorsOpen ? 0 : 1,
+                  filter: "drop-shadow(0 0 6px rgba(251, 191, 36, 1)) drop-shadow(0 0 12px rgba(251, 191, 36, 0.8)) drop-shadow(0 0 20px rgba(251, 191, 36, 0.6))",
+                  boxShadow: "0 0 20px rgba(251, 191, 36, 0.9), 0 0 40px rgba(251, 191, 36, 0.6), inset 0 0 20px rgba(251, 191, 36, 0.3)",
                 }}
               />
             );
