@@ -42,7 +42,7 @@ const Countdown = ({ targetDate = "2026-07-25T00:00:00" }) => {
   ];
 
   return (
-    <div className="flex flex-col items-center gap-3 xs:gap-4 xs2:gap-5 sm:gap-6 mt-6 xs:mt-8 xs2:mt-10 sm:mt-12">
+    <div className="flex flex-col items-center gap-3 xs:gap-4 xs2:gap-5 sm:gap-6 mt-6 xs:mt-8 xs2:mt-10 sm:mt-12 max-w-4xl mx-auto px-4 xs:px-5 sm:px-6">
       <div className="flex items-center gap-2 xs:gap-3 mb-2 xs:mb-3">
         <Calendar className="w-4 h-4 xs:w-5 xs:h-5 xs2:w-6 xs2:h-6 text-amber-300" />
         <p className="text-sm xs:text-base xs2:text-lg sm:text-xl text-amber-200 font-light">
@@ -50,7 +50,7 @@ const Countdown = ({ targetDate = "2026-07-25T00:00:00" }) => {
         </p>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-3 xs:gap-4 xs2:gap-5 sm:gap-6">
+      <div className="flex flex-wrap justify-center gap-3 xs:gap-4 xs2:gap-5 sm:gap-6 w-full">
         {timeUnits.map((unit, index) => (
           <div
             key={index}

@@ -154,7 +154,7 @@ const InvitationsSection = () => {
         </div>
 
         {/* Cards d'informations */}
-        <div className="grid grid-cols-1 xs2:grid-cols-2 md:grid-cols-3 gap-4 xs:gap-5 xs2:gap-6 sm:gap-8 mb-10 xs:mb-12 xs2:mb-14 sm:mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-5 xs2:gap-6 sm:gap-8 mb-10 xs:mb-12 xs2:mb-14 sm:mb-16 max-w-7xl mx-auto">
           {eventInfo.map((info, index) => {
             const Icon = info.icon;
             return (
@@ -174,7 +174,7 @@ const InvitationsSection = () => {
                   className={`absolute inset-0 bg-gradient-to-r ${info.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}
                 />
 
-                <div className="relative">
+                <div className="relative text-center">
                   {/* Image miniature si disponible */}
                   {info.image && (
                     <div className="mb-3 xs:mb-4 rounded-xl overflow-hidden shadow-md">
@@ -186,7 +186,7 @@ const InvitationsSection = () => {
                     </div>
                   )}
 
-                  <div className="flex items-center gap-3 xs:gap-4 mb-3 xs:mb-4">
+                  <div className="flex items-center justify-center gap-3 xs:gap-4 mb-3 xs:mb-4">
                     {!info.image && (
                       <div
                         className={`p-2 xs:p-2.5 xs2:p-3 rounded-xl bg-gradient-to-r ${info.color} bg-opacity-10 group-hover:bg-opacity-20 transition-all duration-300`}
@@ -209,8 +209,8 @@ const InvitationsSection = () => {
           })}
         </div>
 
-        <div className="flex justify-center">
-          <div className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl">
+        <div className="flex justify-center px-4 xs:px-5 sm:px-6">
+          <div className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl mx-auto">
             {/* Formulaire RSVP */}
             <div
               className={`bg-white/80 backdrop-blur-sm rounded-2xl p-6 xs:p-7 xs2:p-8 sm:p-10 shadow-xl border border-gray-200 transition-all duration-1500 ease-out ${

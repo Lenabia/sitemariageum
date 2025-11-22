@@ -284,7 +284,7 @@ const WeddingSite = () => {
         id="timeline-section"
         className="relative py-10 xs:py-12 xs2:py-14 sm:py-16 md:py-20 bg-gradient-to-b from-stone-100 via-amber-50 to-stone-100 overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-3 xs:px-4 xs2:px-5 sm:px-6">
+        <div className="max-w-7xl mx-auto px-3 xs:px-4 xs2:px-5 sm:px-6 lg:px-8 xl:px-10">
           <div
             className={`text-center mb-6 xs:mb-8 xs2:mb-10 sm:mb-12 md:mb-16 transition-all duration-2500 ease-out ${
               isTimelineVisible
@@ -340,11 +340,11 @@ const WeddingSite = () => {
               </button>
 
               {/* Cards Galerie et Vidéo */}
-              <div className="flex flex-col xs2:flex-row gap-4 xs:gap-5 xs2:gap-6 sm:gap-8 items-center w-full max-w-4xl mx-auto">
+              <div className="flex flex-col md:flex-row gap-4 xs:gap-5 xs2:gap-6 sm:gap-8 items-center justify-center w-full max-w-5xl mx-auto px-4 xs:px-5 sm:px-6">
                 {/* Card Galerie de photos */}
                 <button
                   onClick={() => setIsPhotoGalleryOpen(true)}
-                  className="group relative w-full xs2:w-1/2 overflow-hidden rounded-2xl aspect-[4/3] shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105"
+                  className="group relative w-full md:w-1/2 max-w-md overflow-hidden rounded-2xl aspect-[4/3] shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105"
                 >
                   {/* Image de fond */}
                   <div
@@ -374,7 +374,7 @@ const WeddingSite = () => {
                 {/* Card Vidéo */}
                 <button
                   onClick={() => setIsVideoModalOpen(true)}
-                  className="group relative w-full xs2:w-1/2 overflow-hidden rounded-2xl aspect-[4/3] shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105"
+                  className="group relative w-full md:w-1/2 max-w-md overflow-hidden rounded-2xl aspect-[4/3] shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105"
                 >
                   {/* Image de fond */}
                   <div
@@ -416,12 +416,12 @@ const WeddingSite = () => {
         id="future-sections"
         className="py-10 xs:py-12 xs2:py-14 sm:py-16 md:py-20 bg-gradient-to-b from-gray-900 to-gray-800"
       >
-        <div className="max-w-6xl mx-auto px-3 xs:px-4 xs2:px-5 sm:px-6">
+        <div className="max-w-6xl mx-auto px-3 xs:px-4 xs2:px-5 sm:px-6 lg:px-8 xl:px-10">
           <h2 className="font-serif text-2xl xs:text-3xl xs2:text-3xl sm:text-4xl md:text-5xl text-center text-amber-100 mb-6 xs:mb-8 xs2:mb-10 sm:mb-12 md:mb-16">
             Nos Prochains Chapitres
           </h2>
 
-          <div className="grid grid-cols-1 xs2:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 xs:gap-5 xs2:gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-5 xs2:gap-6 sm:gap-8 max-w-7xl mx-auto">
             {[
               {
                 icon: Baby,
@@ -491,7 +491,7 @@ const WeddingSite = () => {
 
       {/* Copyright Footer */}
       <footer className="bg-gray-900 text-white py-6 xs:py-8 border-t border-gray-800">
-        <div className="max-w-6xl mx-auto px-3 xs:px-4 xs2:px-5 sm:px-6 text-center">
+        <div className="max-w-6xl mx-auto px-3 xs:px-4 xs2:px-5 sm:px-6 lg:px-8 xl:px-10 text-center">
           <p className="text-gray-400 text-sm xs:text-base">
             © 2025 - Créé avec ❤️ pour immortaliser les plus beaux moments
           </p>

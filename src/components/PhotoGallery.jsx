@@ -228,7 +228,7 @@ const PhotoGallery = ({ isOpen, onClose }) => {
       </div>
 
       {/* Gallery Sections */}
-      <div className="max-w-7xl mx-auto px-3 xs:px-4 xs2:px-5 sm:px-6 py-8 xs:py-10 xs2:py-12 sm:py-16">
+      <div className="max-w-7xl mx-auto px-3 xs:px-4 xs2:px-5 sm:px-6 lg:px-8 xl:px-10 py-8 xs:py-10 xs2:py-12 sm:py-16">
         {Object.entries(gallerySections).map(([key, section], sectionIndex) => (
           <div key={key} className="mb-16 xs:mb-20 xs2:mb-24 sm:mb-32">
             {/* Section Title */}

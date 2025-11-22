@@ -4,7 +4,7 @@ import { Heart, Instagram, ExternalLink } from "lucide-react";
 const BioSection = () => {
   return (
     <section className="py-12 xs:py-16 xs2:py-20 sm:py-24 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 overflow-x-hidden w-full max-w-full">
-      <div className="max-w-4xl mx-auto px-3 xs:px-4 xs2:px-5 sm:px-6 w-full">
+      <div className="max-w-4xl mx-auto px-3 xs:px-4 xs2:px-5 sm:px-6 lg:px-8 xl:px-10 w-full">
         <div className="text-center mb-8 xs:mb-10 xs2:mb-12">
           <div className="flex items-center justify-center gap-2 mb-4 xs:mb-5">
             <div className="h-px w-12 xs:w-16 bg-gradient-to-r from-transparent to-amber-400" />
