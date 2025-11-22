@@ -46,8 +46,8 @@ const VideoModal = ({ isOpen, onClose }) => {
       />
 
       {/* Modal Content */}
-      <div className="relative h-full w-full flex items-center justify-center p-4 xs:p-6">
-        <div className="relative w-full max-w-6xl bg-black rounded-2xl xs:rounded-3xl shadow-2xl overflow-hidden">
+      <div className="relative h-full w-full flex items-center justify-center p-4 xs:p-6 lg:p-8">
+        <div className="relative w-full max-w-5xl xl:max-w-6xl 2xl:max-w-7xl max-h-[95vh] bg-black rounded-2xl xs:rounded-3xl shadow-2xl overflow-hidden flex flex-col">
           {/* Close Button */}
           <button
             onClick={onClose}

@@ -172,11 +172,11 @@ const StoryModal = ({ isOpen, onClose }) => {
       />
 
       {/* Modal Content */}
-      <div className={`relative h-full w-full flex items-center justify-center p-2 xs:p-3 xs2:p-4 sm:p-6 ${
+      <div className={`relative h-full w-full flex items-center justify-center p-2 xs:p-3 xs2:p-4 sm:p-6 lg:p-8 ${
         showModal ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}>
         <div
-          className={`relative w-full max-w-6xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl xs:rounded-3xl shadow-2xl overflow-hidden transition-all duration-700 animate-modal-appear ${
+          className={`relative w-full max-w-5xl xl:max-w-6xl 2xl:max-w-7xl max-h-[95vh] bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl xs:rounded-3xl shadow-2xl overflow-hidden transition-all duration-700 animate-modal-appear flex flex-col ${
             isTransitioning ? "opacity-0 scale-95" : "opacity-100 scale-100"
           }`}
         >
@@ -189,14 +189,15 @@ const StoryModal = ({ isOpen, onClose }) => {
           </button>
 
           {/* Content - Image en arrière-plan avec texte par-dessus */}
-          <div className="relative min-h-[70vh] xs:min-h-[75vh] xs2:min-h-[80vh] sm:min-h-[85vh] flex flex-col overflow-hidden">
+          <div className="relative min-h-[70vh] xs:min-h-[75vh] xs2:min-h-[80vh] sm:min-h-[85vh] max-h-[85vh] lg:max-h-[90vh] flex flex-col overflow-hidden">
             {/* Image en arrière-plan */}
             <div className="absolute inset-0">
               <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out"
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 ease-out"
                 style={{
                   backgroundImage: `url(${currentStory.image})`,
                   transform: isTransitioning ? "scale(1.1)" : "scale(1)",
+                  objectFit: "cover",
                 }}
               />
               {/* Overlay pour lisibilité du texte */}
@@ -204,9 +205,9 @@ const StoryModal = ({ isOpen, onClose }) => {
             </div>
 
             {/* Text Content par-dessus l'image */}
-            <div className="relative flex-1 flex flex-col justify-between p-4 xs:p-5 xs2:p-6 sm:p-8 md:p-10 lg:p-12 text-white overflow-y-auto z-10">
+            <div className="relative flex-1 flex flex-col justify-between p-4 xs:p-5 xs2:p-6 sm:p-8 md:p-10 lg:p-12 xl:p-14 text-white overflow-y-auto z-10">
               {/* Contenu principal centré */}
-              <div className="flex-1 flex flex-col justify-center">
+              <div className="flex-1 flex flex-col justify-center max-w-5xl mx-auto w-full px-2 xs:px-3 sm:px-4">
                 <div
                   className={`transition-all duration-700 ${
                     isTransitioning
@@ -214,7 +215,7 @@ const StoryModal = ({ isOpen, onClose }) => {
                       : "opacity-100 translate-y-0"
                   }`}
                 >
-                  <h2 className="font-serif text-3xl xs:text-4xl xs2:text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-4 xs:mb-5 xs2:mb-6 sm:mb-8 text-white drop-shadow-2xl text-center">
+                  <h2 className="font-serif text-3xl xs:text-4xl xs2:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-7xl 2xl:text-8xl mb-4 xs:mb-5 xs2:mb-6 sm:mb-8 text-white drop-shadow-2xl text-center">
                     {currentStory.title}
                   </h2>
 
@@ -225,13 +226,13 @@ const StoryModal = ({ isOpen, onClose }) => {
                   )}
 
                   {currentStory.content.story ? (
-                    <div className="space-y-4 xs:space-y-5 max-w-4xl mx-auto">
-                      <p className="text-base xs:text-lg xs2:text-xl sm:text-2xl md:text-3xl leading-relaxed text-white font-light drop-shadow-lg text-center">
+                    <div className="space-y-4 xs:space-y-5 max-w-4xl mx-auto px-2 xs:px-3 sm:px-4">
+                      <p className="text-base xs:text-lg xs2:text-xl sm:text-2xl md:text-xl lg:text-2xl xl:text-2xl 2xl:text-3xl leading-relaxed text-white font-light drop-shadow-lg text-center">
                         {currentStory.content.story}
                       </p>
                     </div>
                   ) : (
-                    <div className="space-y-5 xs:space-y-6 xs2:space-y-8 max-w-3xl mx-auto">
+                    <div className="space-y-5 xs:space-y-6 xs2:space-y-8 max-w-3xl mx-auto px-2 xs:px-3 sm:px-4">
                       <div className="flex items-center gap-3 xs:gap-4 mb-6 xs:mb-8">
                         <div className="h-px flex-1 bg-gradient-to-r from-transparent to-amber-300" />
                         <Heart className="w-6 h-6 xs:w-8 xs:h-8 text-amber-300 fill-amber-300 drop-shadow-lg" />

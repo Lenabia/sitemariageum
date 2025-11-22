@@ -244,7 +244,7 @@ const PhotoGallery = ({ isOpen, onClose }) => {
             </div>
 
             {/* Masonry Grid */}
-            <div className="columns-1 xs:columns-2 md:columns-3 lg:columns-4 gap-3 xs:gap-4 xs2:gap-5 sm:gap-6">
+            <div className="columns-1 xs:columns-2 md:columns-3 lg:columns-4 xl:columns-4 2xl:columns-5 gap-3 xs:gap-4 xs2:gap-5 sm:gap-6 max-w-7xl mx-auto">
               {section.photos.map((photo, index) => (
                 <div
                   key={index}
@@ -276,21 +276,23 @@ const PhotoGallery = ({ isOpen, onClose }) => {
       {/* Lightbox Modal */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 xs:p-6 lg:p-8"
           onClick={() => setSelectedImage(null)}
         >
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all text-white z-10"
+            className="absolute top-4 xs:top-6 right-4 xs:right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all text-white z-10"
           >
             <X className="w-6 h-6" />
           </button>
-          <img
-            src={selectedImage}
-            alt="Photo en grand"
-            className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          />
+          <div className="relative max-w-6xl xl:max-w-7xl 2xl:max-w-7xl w-full h-full flex items-center justify-center">
+            <img
+              src={selectedImage}
+              alt="Photo en grand"
+              className="max-w-full max-h-[95vh] object-contain rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
         </div>
       )}
     </div>
