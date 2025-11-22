@@ -99,20 +99,26 @@ const StoryModal = ({ isOpen, onClose }) => {
   }, [isOpen]);
 
   const nextPage = () => {
-    if (currentPage < storyPages.length - 1 && !isTransitioning) {
+    if (!isTransitioning) {
       setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentPage((prev) => prev + 1);
+        setCurrentPage((prev) => {
+          // Boucle : si on est au dernier, revenir au premier
+          return prev < storyPages.length - 1 ? prev + 1 : 0;
+        });
         setIsTransitioning(false);
       }, 300);
     }
   };
 
   const prevPage = () => {
-    if (currentPage > 0 && !isTransitioning) {
+    if (!isTransitioning) {
       setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentPage((prev) => prev - 1);
+        setCurrentPage((prev) => {
+          // Boucle : si on est au premier, aller au dernier
+          return prev > 0 ? prev - 1 : storyPages.length - 1;
+        });
         setIsTransitioning(false);
       }, 300);
     }
@@ -197,8 +203,6 @@ const StoryModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   const currentStory = storyPages[currentPage];
-  const isFirstPage = currentPage === 0;
-  const isLastPage = currentPage === storyPages.length - 1;
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden">
@@ -365,12 +369,7 @@ const StoryModal = ({ isOpen, onClose }) => {
             >
               <button
                 onClick={prevPage}
-                disabled={isFirstPage}
-                className={`flex items-center gap-1.5 xs:gap-2 px-3 xs:px-4 xs2:px-5 sm:px-6 py-2 xs:py-2.5 xs2:py-3 rounded-full transition-all text-sm xs:text-base ${
-                  isFirstPage
-                    ? "opacity-30 cursor-not-allowed"
-                    : "bg-white/10 hover:bg-white/20"
-                } text-white`}
+                className="flex items-center gap-1.5 xs:gap-2 px-3 xs:px-4 xs2:px-5 sm:px-6 py-2 xs:py-2.5 xs2:py-3 rounded-full transition-all text-sm xs:text-base bg-white/10 hover:bg-white/20 text-white"
               >
                 <ChevronLeft className="w-4 h-4 xs:w-5 xs:h-5" />
                 <span className="hidden xs2:inline">Précédent</span>
@@ -381,11 +380,11 @@ const StoryModal = ({ isOpen, onClose }) => {
               </div>
 
               <button
-                onClick={isLastPage ? onClose : nextPage}
+                onClick={nextPage}
                 className="flex items-center gap-1.5 xs:gap-2 px-3 xs:px-4 xs2:px-5 sm:px-6 py-2 xs:py-2.5 xs2:py-3 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-gray-900 rounded-full font-semibold text-sm xs:text-base transition-all shadow-lg hover:shadow-amber-500/50"
               >
-                <span>{isLastPage ? "Fermer" : "Suivant"}</span>
-                {!isLastPage && <ChevronRight className="w-4 h-4 xs:w-5 xs:h-5" />}
+                <span>Suivant</span>
+                <ChevronRight className="w-4 h-4 xs:w-5 xs:h-5" />
               </button>
             </div>
           </div>
